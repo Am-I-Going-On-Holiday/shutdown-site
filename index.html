@@ -1,0 +1,392 @@
+<!--
+
+                                                              .===-
+                                                 .::--=-::....=++++:
+                                            :-+*#*+=:......=*#####*=....
+                                        .-*###*+-........=*#########*..:---
+                                      :*####*=.........:*############+....-*+-
+                                    :*#####=..........:*##############:.....-*#=.
+                                  .+#####*:..........:*###############=.......+##+.
+                                 .*#####*:...........*################+........+###=
+                                 *#####*:...........=#################+.........*###*.
+                                =######-...........:##################=.........:####*.
+                                *####*+............+##################-..........*####*
+                                :==-.  ...........:###################:..........=#####-
+                                                   .=*###############*...........=#####*
+                                                      :+*###########*-...........=######
+                                                         ++***+--:.    ..........*######
+                                                        .+++++            ...... =#####+
+                                                        =++++=                    .=##*.
+                                                        +++++.                       .
+                                                       -++++=
+                                                       =++++-
+                                                      .+++++
+                                                      =++++=
+                                                      +++++.
+                                        ..::---=======+++++---::...
+                                   .:=+++++++++++++++++++++++++++++++==-:.
+                                .-+++++++++++++++++++++++++++++++++++++++++=:.
+                          .:::=++++++++++++++++++++++++++++++++++++++++++++++++-.
+                     .:-====-:++++++++++++++++++============+++++++++++++++++++++-
+                  :-=======:..++++++++++++++++++=============+++++++++++++++++++++.:-:
+                .===========:.:-==+++++++++++++++++++++++++++++++++++++++++++===-::-===.
+                ==============---:::::::::::::::::::::::::::::::::::::::::::::---=======
+                :======================================================================:
+                  :-================================================================-:
+                    .::-========================================================-::.
+                         ..::--==========================================--::..
+                                  ..:::::-------========-------:::::..
+
+
+                                    This site has gone on holiday!
+                        Thank you for being a part of this! See you in the future!
+
+                                        Am I Going On Holiday
+                                            (2021 - 2023)
+                                           From dominic.sk
+
+
+                          Open sourced: https://github.com/Am-I-Going-On-Holiday
+
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Am I Going On Holiday?</title>
+    <link rel='shortcut icon' type='image/x-icon' href="./static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Not sure if your holiday/travel destination is on the UK travel red list? Use this quick and easy tool to find out.">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta property="og:title" content="Am I Going On Holiday?">
+    <meta property="og:site_name" content="Am I Going On Holiday?">
+    <meta property="og:url" content="https://amigoingonholiday.co.uk">
+    <meta property="og:description" content="Not sure if your holiday/travel destination is on the UK travel red list? Use this quick and easy tool to find out.">
+    <meta property="og:image" content="./static/favicon.ico">
+    <meta property="og:type" content="website">
+
+    <!-- Apple touch icons -->
+    <link rel="apple-touch-icon" href="./static/apple-touch-icon-iphone-60x60.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./static/apple-touch-icon-ipad-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./static/apple-touch-icon-iphone-retina-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./static/apple-touch-icon-ipad-retina-152x152.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap component polyfill (Bootstrap v4 -> v5) -->
+    <link href="./css/polyfill.css" rel="stylesheet">
+    <!-- Emoji CSS -->
+    <link href="./css/emoji.css" rel="stylesheet">
+    <!-- Other CSS definitions -->
+    <link href="./css/master.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.4.95/css/materialdesignicons.min.css">
+
+    <link href="./css/offcanvas.css" rel="stylesheet">
+
+    <!-- ApexCharts -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  </head>
+  <body class="bg-light">
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light navbar-inner" aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><i class="em em_umbrella_svg" aria-role="presentation" aria-label=""></i>Am I Going On Holiday?</a>
+    <button class="navbar-toggler p-0 border-0" type="button" id="navbarMobileSearch">
+      <span class="mdi mdi-magnify nav-icon-search"></span>
+    </button>
+    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/map">World Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/restrictions">Travel Restrictions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/list">List Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/stats">Statistics</a>
+        </li>
+
+
+        <li class="nav-item d-block d-sm-none pt-2">
+          <a class="nav-link btn btn-secondary disabled" href="#"><i class="mdi mdi-login"></i> Sign In/Register</a>
+        </li>
+
+      </ul>
+      <div class="d-flex">
+        <form class="input-group w-auto" method="POST" action="#">
+          <input type="search" id="search" class="form-control d-none d-sm-block" placeholder="Paris, Spain etc." aria-label="Search" name="search" value="" required disabled></input>
+          <input class="btn btn-outline-primary d-none d-sm-block" type="submit" value="Search" disabled></input>
+        </form>
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-secondary d-none d-sm-block disabled" href="#"><i class="mdi mdi-login"></i> Sign In/Register</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Begin shutdown modal -->
+<div class="modal fade" id="shutdownNotice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="shutdownNoticeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- Shutdown content here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark"><i class="mdi mdi-github"></i> GitHub</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- End shutdown modal -->
+
+<div class="mobile-search-bar mb-0 fixed-top">
+  <form class="input-group w-auto" method="POST" action="#">
+      <input type="search" id="search" class="form-control" placeholder="Paris, Spain etc." aria-label="Search" name="search" value="" required disabled></input>
+      <input class="btn btn-outline-primary" type="submit" value="Search" disabled></input>
+  </form>
+</div>
+<noscript>
+  <div class="alert alert-primary fixed-top" role="alert"><i class="mdi mdi-alert-rhombus"></i> <b>Please enable JavaScript</b> For this website to work correctly, you must enable JavaScript on your browser. <a href="https://www.enable-javascript.com/">Learn more &raquo;</a></div>
+</noscript>
+<!-- main content -->
+
+        <div class="jumbotron-home">
+            <div class="container">
+                <div class="alert alert-primary shadow-lg">
+                    <b><i class="mdi mdi-bullhorn"></i> Service Sunsetting</b>
+                    This service is being discontinued, please read the <a href="#">shutdown notice</a> for more information.
+                </div>
+
+                <h1 class="display-4 d-none d-sm-block">Are you going on holiday?</h1>
+                <h1 class="display-4 d-block d-sm-none text-center">Are you going on holiday?</h1>
+                <p class="lead d-none d-sm-block">This third-party website gives you better insight into the UK travel Red List (previously the Red, Amber and Green travel lists).</p>
+                <h5 class="lead d-block d-sm-none text-center">This third-party website gives you better insight into the UK travel Red List (previously the Red, Amber and Green travel lists).</h5>
+
+                <div class="d-none d-sm-block">
+                    <p class="d-none d-sm-block h5"><b>Popular Destinations:</b></p>
+
+                            <div class="h3 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm"><i class="em em-flag-es" aria-role="presentation" aria-label="Spain Flag"></i> Spain</a></div>
+
+                            <div class="h3 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm"><i class="em em-flag-bg" aria-role="presentation" aria-label="Bulgaria Flag"></i> Bulgaria</a></div>
+
+                            <div class="h3 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm"><i class="em em-flag-fr" aria-role="presentation" aria-label="France Flag"></i> France</a></div>
+
+                            <div class="h3 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm"><i class="em em-flag-cn" aria-role="presentation" aria-label="China Flag"></i> China</a></div>
+
+                            <div class="h3 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm"><i class="em em-flag-ca" aria-role="presentation" aria-label="Canada Flag"></i> Canada</a></div>
+
+                </div>
+                <div class="d-block d-sm-none">
+                    <br />
+                    <p class="text-center"><b>Popular Destinations</b></p>
+                    <div class="navbar-nav-scroll pb-1">
+                        <ul class="navbar-nav bd-navbar-nav flex-row">
+
+                                    <li class="nav-item">
+                                        <div class="h2 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm">🇪🇸 Spain</a></div>
+                                    </li>
+                                    &nbsp;
+
+                                    <li class="nav-item">
+                                        <div class="h2 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm">🇧🇬 Bulgaria</a></div>
+                                    </li>
+                                    &nbsp;
+
+                                    <li class="nav-item">
+                                        <div class="h2 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm">🇫🇷 France</a></div>
+                                    </li>
+                                    &nbsp;
+
+                                    <li class="nav-item">
+                                        <div class="h2 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm">🇨🇳 China</a></div>
+                                    </li>
+                                    &nbsp;
+
+                                    <li class="nav-item">
+                                        <div class="h2 d-inline"><a href="#" class="badge rounded-pill bg-light text-dark text-decoration-none shadow-sm">🇨🇦 Canada</a></div>
+                                    </li>
+                                    &nbsp;
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Recent Changes</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">05 April 2023</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Travel Requirement Changes</h6>
+                            <p class="card-text">You do not need to take any COVID-19 tests to travel to England from mainland China.</p>
+                            Source: <a href="#" target="_blank" rel="noopener" class="card-link text-dark text-decoration-none">GOV.UK</a> <i class="mdi mdi-check-decagram text-muted" data-bs-toggle="tooltip" data-bs-placement="right" title="Verified Source"></i>
+                        </div>
+                    </div>
+                    <p class="pt-3"><a class="btn btn-secondary" href="#" role="button">View all changes &raquo;</a></p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Recent COVID-19 News</h2>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h5 class="card-title">Covid global health emergency is over, WHO says</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">BBC News: Health &bull; <i class="mdi mdi-clock-outline"></i> 05/05/2023 at 14:47 (GMT)</h6>
+                            <p class="card-text">The World Health Organization (WHO) has declared that Covid-19 no longer represents a "global health emergency".</p>
+                            Source: <a href="https://www.bbc.com/news/health-65499929" target="_blank" rel="noopener" class="card-link text-dark text-decoration-none">BBC News</a> <i class="mdi mdi-check-decagram text-muted" data-bs-toggle="tooltip" data-bs-placement="right" title="Verified Source"></i>
+
+                        </div>
+                    </div>
+
+                    <p class="pt-3"><a class="btn btn-secondary" href="https://www.bbc.com/news/health-65499929" target="_blank" rel="noopener" role="button">Read news article &raquo;</a></p>
+
+                </div>
+            </div>
+            <h2 class="text-center pt-4">COVID-19 in the United Kingdom</h2>
+            <h6 class="text-center text-muted"><i class="mdi mdi-clock-outline"></i> Last updated 23/03/2023 at 17:56 (GMT) - Source: <a href="https://coronavirus.data.gov.uk/" class="text-muted text-decoration-none">GOV.UK</a></h6>
+
+            <div class="row pt-3">
+                <div class="col-md-3 d-none d-sm-block">
+                    <h2 class="display-5 text-center">2,550<sup class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="+3,058 cases (11.6%) from previous 7 days"><i class="mdi mdi-arrow-up"></i></sup></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-virus"></i> <i>Positive Cases</i></h4>
+                </div>
+                <div class="col-md-3 d-none d-sm-block">
+                    <h2 class="display-5 text-center">17<sup class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="+36 deaths (9.1%) from previous 7 days"><i class="mdi mdi-arrow-up"></i></sup></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-grave-stone"></i> <i>Recorded Deaths</i></h4>
+                </div>
+                <div class="col-md-3 d-none d-sm-block">
+                    <h2 class="display-5 text-center">1,019<sup class="text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="-108 admissions (-1.5%) from previous 7 days"><i class="mdi mdi-arrow-down"></i></sup></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-hospital-box"></i> <i>Patients Admitted</i></h4>
+                </div>
+                <div class="col-md-3 d-none d-sm-block">
+                    <h2 class="display-5 text-center">70.1%<sup><i class="mdi mdi-information-outline" data-bs-toggle="tooltip" data-bs-placement="top" title="UK Population (aged 12+ years) completing 1 full course of vaccination - including boosters/third doses"></i></sup></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-needle"></i> <i>Fully Vaccinated</i></h4>
+                </div>
+                <h6 class="text-center pt-3 d-none d-sm-block"><a href="#"><button class="btn btn-secondary">View all UK COVID-19 statistics &raquo;</button></a></h6>
+            </div>
+            <div class="row d-block d-sm-none">
+                <!-- works on mobile only -->
+                <div class="col-md-3">
+                    <h2 class="display-1 text-center">2,550 <i class="mdi mdi-arrow-up text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="+3,058 cases (11.6%) from previous 7 days"></i></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-virus"></i> <i>Positive Cases</i></h4>
+                </div>
+
+                <div class="col-md-3 pt-2">
+                    <h2 class="display-1 text-center">17 <i class="mdi mdi-arrow-up text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="+36 deaths (9.1%) from previous 7 days"></i></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-grave-stone"></i> <i>Recorded Deaths</i></h4>
+                </div>
+
+                <div class="col-md-3 pt-2">
+                    <h2 class="display-1 text-center">1,019 <i class="mdi mdi-arrow-down text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="-108 admissions (-1.5%) from previous 7 days"></i></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-hospital-box-outline"></i> <i>Patients Admitted</i></h4>
+                </div>
+
+                <div class="col-md-3 pt-2 pb-2">
+                    <h2 class="display-1 text-center">70.1% <i class="mdi mdi-information-outline" data-bs-toggle="tooltip" data-bs-placement="top" title="UK Population (aged 12+ years) completing 1 full course of vaccination - including boosters/third doses"></i></h2>
+                    <h4 class="text-muted text-center"><i class="mdi mdi-needle"></i> <i>Fully Vaccinated</i></h4>
+                </div>
+                <h6 class="text-center pt-2"><a href="#"><button class="btn btn-secondary">View all UK COVID-19 statistics &raquo;</button></a></h6>
+            </div>
+            <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center">
+                <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                    <h1 class="display-4 lh-1">Country risk score: Travel with confidence.</h1>
+                    <p class="lead">Our AI-Powered country risk score gives you an indicator of COVID-19 risk. Each score is individual to each country, and is updated daily to reflect a country's rapidly changing COVID-19 situation.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                        <a href="#" class="text-decoration-none"><button type="button" class="btn btn-secondary btn-lg px-4 me-md-2 fw-bold">Learn More</button></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-sm-block">
+
+                    <img class="rounded-lg-3" src="./static/placeholder.png" alt="score-placeholder" width="720">
+
+                </div>
+            </div>
+        </div>
+
+<!-- /main content -->
+</main>
+
+<!-- global footer -->
+<footer class="bd-footer py-5 mt-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/" aria-label="Am I Going On Holiday">
+                        <img src="./static/logo.svg" class="logo-footer"></img> <span class="fs-5 ps-2 ms-1">Am I Going On Holiday?</span>
+                    </a>
+                    <ul class="list-unstyled small text-muted">
+                        <li class="mb-2">This website is a hobby project and is not affiliated with GOV.UK.</li>
+                        <li class="mb-2"><i class="mdi mdi-alert"></i> <b>Website Disclaimer:</b> This website operates as-is and the author of this website provides no guarantee on data accuracy from third-party websites/sources.</li>
+                        <li class="mb-2">Am I Going On Holiday by <a href="https://dominic.sk" target="_blank" rel="noopener">dominic.sk</a>.</li>
+                        <li class="mb-2">Currently v2.0.4</li>
+                        <li class="mb-2"><a href="#" class="h2 text-decoration-none text-dark"><i class="mdi mdi-weather-night" data-bs-toggle="tooltip" data-bs-placement="right" title="Toggle Dark Theme"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#">Interactive World Map</a></li>
+                        <li class="mb-2"><a href="#">Restrictions Explained</a></li>
+                        <li class="mb-2"><a href="#">UK Travel List Overview</a></li>
+                        <li class="mb-2"><a href="#">COVID-19 Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>About</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Country Risk Score</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Fair Use Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>My Account</h5>
+                    <ul class="list-unstyled">
+
+                            <li class="mb-2"><a href="#">Sign In/Sign Up</a></li>
+                            <li class="mb-2"><a href="#">Recover Account</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Share</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Twitter</a></li>
+                        <li class="mb-2"><a href="#">Facebook</a></li>
+                        <li class="mb-2"><a href="#">LinkedIn</a></li>
+                        <li class="mb-2"><a href="#">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- /global footer -->
+
+      <script src="./js/bootstrap.bundle.min.js"></script>
+      <script src="./js/offcanvas.js"></script>
+      <script src="./js/bsfuncs.js"></script>
+
+      <script>
+        let shutdownModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('shutdownNotice'));
+        setTimeout(function() {
+          shutdownModal.show();
+        }, 1500);
+      </script>
+
+  </body>
+</html>
