@@ -138,14 +138,25 @@
 </nav>
 
 <!-- Begin shutdown modal -->
-<div class="modal fade" id="shutdownNotice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="shutdownNoticeLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade shadow-lg" id="shutdownNotice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="shutdownNoticeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <!-- Shutdown content here -->
+          <span class="text-center">
+            <h4 class="pt-2 pb-1"><i class="em em_umbrella_svg" aria-role="presentation" aria-label=""></i> Am I Going On Holiday?</h4>
+          </span>
+
+           <p>The 'Am I Going On Holiday?' project and service ceased operations on May 12th, 2023, as previously communicated in our
+           service shutdown announcement.</p>
+           <p>Rest assured, all user data has been securely deleted in compliance with the 2018 UK Data Protection Act.</p>
+           <p>We sincerely appreciate your support and hope that our service has been valuable to you.</p>
+           <p class="mb-0">For developers interested in exploring the source code of this project, please feel free to access it on GitHub using
+           the provided link.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark"><i class="mdi mdi-github"></i> GitHub</button>
+          <a href="https://github.com/Am-I-Going-On-Holiday" class="text-decoration-none">
+            <button type="button" class="btn btn-dark"><i class="mdi mdi-github"></i> View on GitHub</button>
+          </a>
         </div>
       </div>
     </div>
@@ -165,10 +176,6 @@
 
         <div class="jumbotron-home">
             <div class="container">
-                <div class="alert alert-primary shadow-lg">
-                    <b><i class="mdi mdi-bullhorn"></i> Service Sunsetting</b>
-                    This service is being discontinued, please read the <a href="#">shutdown notice</a> for more information.
-                </div>
 
                 <h1 class="display-4 d-none d-sm-block">Are you going on holiday?</h1>
                 <h1 class="display-4 d-block d-sm-none text-center">Are you going on holiday?</h1>
@@ -380,13 +387,7 @@
       <script src="./js/bootstrap.bundle.min.js"></script>
       <script src="./js/offcanvas.js"></script>
       <script src="./js/bsfuncs.js"></script>
-
-      <script>
-        let shutdownModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('shutdownNotice'));
-        setTimeout(function() {
-          shutdownModal.show();
-        }, 1500);
-      </script>
+      <script src="./js/modal.js"></script>
 
   </body>
 </html>
